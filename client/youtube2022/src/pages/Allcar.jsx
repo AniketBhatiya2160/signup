@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { AuthContext } from "../context/authContext";
 
@@ -23,13 +24,22 @@ const Allcar = () => {
     fetchdata();
   }, []);
 
+  const handleDelete = async (r_id) => {
+    try {
+      await axios.delete(`http://10.0.1.205:8800/api/cars/deletecar/${r_id}`);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Header />
       <div className="container d-flex" style={{ marginTop: "50px" }}>
         {cars.map((car) => (
           <div className="row " key={car.r_id}>
-            <div className="col-md-11">
+            <div className="col-md-5">
               <div className="card-sl">
                 <div className="card-image">
                   <img src={`../uploads/${JSON.parse(car.img)[0]}`} />
@@ -41,9 +51,14 @@ const Allcar = () => {
                 <div className="card-text">Date of Purchase: {car.date}</div>
                 <div className="card-text">Selling price :${car.s_price}</div>
                 <a href="#" className="card-button">
-                  Upadate
+                  <Link to={`/sellcar/?${car.r_id}`} state={cars}>
+                    Upadate
+                  </Link>
                 </a>
-                <a href="#" className="card-button">
+                <a
+                  onClick={() => handleDelete(car.r_id)}
+                  className="card-button"
+                >
                   Delete
                 </a>
               </div>

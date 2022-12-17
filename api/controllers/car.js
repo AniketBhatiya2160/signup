@@ -39,3 +39,13 @@ export const addcar = (req, res) => {
     });
   });
 };
+
+export const deletecar = (req, res) => {
+  const q = "Delete from cars where r_id=?";
+  db.query(q, [req.params.r_id], (err, data) => {
+    if (err) {
+      return res.json(err);
+    }
+    return res.json("Car data deleted!");
+  });
+};

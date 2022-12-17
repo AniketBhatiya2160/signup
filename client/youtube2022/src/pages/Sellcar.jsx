@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { AuthContext } from "../context/authContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,10 +9,11 @@ import { useFormik } from "formik";
 import { sellSchema } from "../schemas";
 
 const Sellcar = () => {
+  const state = useLocation().state;
   const { currentUser } = useContext(AuthContext);
 
   const initialValues = {
-    c_name: "",
+    c_name: state?.c_name || "",
     model: "",
     date: "",
     miles: "",
@@ -38,37 +39,6 @@ const Sellcar = () => {
   // };
 
   const navigate = useNavigate();
-
-  // const handleClick = async (e) => {
-  //   e.preventDefault();
-  //   setId(currentUser.id);
-
-  //   const imgUrl = await upload();
-  //   console.log(imgUrl);
-  //   let arr1 = [];
-  //   imgUrl.map((img) => {
-  //     arr1.push(img.filename);
-  //   });
-  //   console.log(arr1);
-  //   let arr2 = JSON.stringify(arr1);
-  //   console.log(arr2);
-
-  //   try {
-  //     console.log("aniket");
-  //     await axios.post("http://10.0.1.205:8800/api/cars/addcar", {
-  //       c_name,
-  //       model,
-  //       date,
-  //       miles,
-  //       s_price,
-  //       arr2,
-  //       id, //chnages
-  //     });
-  //     navigate("/home");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const {
     values,
@@ -134,6 +104,7 @@ const Sellcar = () => {
             <div className="mb-3">
               <input
                 className="form-control"
+                id="avee"
                 name="c_name"
                 type="text"
                 value={values.c_name}
