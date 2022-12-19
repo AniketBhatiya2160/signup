@@ -13,6 +13,8 @@ import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 import Sellcar from "./pages/Sellcar";
 import Allcar from "./pages/Allcar";
+import Upadate from "./pages/Upadate";
+import Cardetails from "./pages/Cardetails";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -27,16 +29,27 @@ function App() {
           />
           <Route
             path="/registration"
-            element={!currentUser ? <Register /> : <Home />}
+            element={!currentUser ? <Register /> : <Navigate replace to="/" />}
           />
-          <Route path="/home" element={currentUser ? <Home /> : <Login />} />
+          <Route
+            path="/home"
+            element={currentUser ? <Home /> : <Navigate replace to="/" />}
+          />
           <Route
             path="/sellcar"
-            element={currentUser ? <Sellcar /> : <Login />}
+            element={currentUser ? <Sellcar /> : <Navigate replace to="/" />}
           />
           <Route
             path="/allcar"
-            element={currentUser ? <Allcar /> : <Login />}
+            element={currentUser ? <Allcar /> : <Navigate replace to="/" />}
+          />
+          <Route
+            path="/upadatecar/:r_id"
+            element={currentUser ? <Upadate /> : <Navigate replace to="/" />}
+          />
+          <Route
+            path="/cardetails/:r_id"
+            element={currentUser ? <Cardetails /> : <Navigate replace to="/" />}
           />
         </Routes>
       </BrowserRouter>

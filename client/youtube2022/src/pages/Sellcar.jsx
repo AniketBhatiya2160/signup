@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { AuthContext } from "../context/authContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,11 +9,10 @@ import { useFormik } from "formik";
 import { sellSchema } from "../schemas";
 
 const Sellcar = () => {
-  const state = useLocation().state;
   const { currentUser } = useContext(AuthContext);
 
   const initialValues = {
-    c_name: state?.c_name || "",
+    c_name: "",
     model: "",
     date: "",
     miles: "",
@@ -86,8 +85,8 @@ const Sellcar = () => {
         console.log("aniket");
         await axios.post("http://10.0.1.205:8800/api/cars/addcar", values);
         navigate("/home");
-      } catch (error) {
-        toast.error(error);
+      } catch (err) {
+        toast.error(err.response.data);
       }
 
       // action.resetForm();
@@ -170,6 +169,7 @@ const Sellcar = () => {
 
                 onChange={(e) => setFieldValue("img", e.currentTarget.files)}
                 placeholder="enter img"
+                accept="image/x-png,image/gif,image/jpeg"
               />
               {errors.img && touched.img ? (
                 <p className="form-error">{errors.img}</p>
@@ -212,7 +212,18 @@ const Sellcar = () => {
           </form>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

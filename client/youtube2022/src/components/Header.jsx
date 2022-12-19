@@ -15,7 +15,7 @@ const Header = () => {
         <Container>
           <Navbar.Brand>
             {" "}
-            <Nav className="me-auto">
+            <Nav className="me-auto color navbar-dark">
               <Link to="/home" className="nav-link">
                 car-sell
               </Link>
