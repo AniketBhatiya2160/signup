@@ -5,6 +5,7 @@ import { AuthContext } from "../context/authContext";
 import { loginSchema } from "../schemas/app";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Oheader from "../components/Oheader";
 
 const initialValues = {
   username: "",
@@ -52,48 +53,52 @@ const Login = () => {
       },
     });
   return (
-    <div className="auth">
-      <div className="form">
-        <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
-          <div className="mb-3">
-            <input
-              className="form-control"
-              name="username"
-              onChange={handleChange}
-              value={values.username}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Enter username"
-            />
-            {errors.username && touched.username ? (
-              <p className="form-error">{errors.username}</p>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <input
-              className="form-control"
-              onChange={handleChange}
-              value={values.password}
-              onBlur={handleBlur}
-              name="password"
-              type="password"
-              placeholder="Enter Password"
-            />
-            {errors.password && touched.password ? (
-              <p className="form-error">{errors.password}</p>
-            ) : null}
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Sign in
-          </button>
-          {/* {errors && <p>{errors}</p>} */}
-          <span>
-            For registration click here <Link to="/registration">Register</Link>
-          </span>
-        </form>
+    <div>
+      <Oheader/>
+      <div className="auth">
+        <div className="form">
+          <form onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <div className="mb-3">
+              <input
+                className="form-control"
+                name="username"
+                onChange={handleChange}
+                value={values.username}
+                onBlur={handleBlur}
+                type="text"
+                placeholder="Enter username"
+              />
+              {errors.username && touched.username ? (
+                <p className="form-error">{errors.username}</p>
+              ) : null}
+            </div>
+            <div className="mb-3">
+              <input
+                className="form-control"
+                onChange={handleChange}
+                value={values.password}
+                onBlur={handleBlur}
+                name="password"
+                type="password"
+                placeholder="Enter Password"
+              />
+              {errors.password && touched.password ? (
+                <p className="form-error">{errors.password}</p>
+              ) : null}
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Sign in
+            </button>
+            {/* {errors && <p>{errors}</p>} */}
+            <span>
+              For registration click here{" "}
+              <Link to="/registration">Register</Link>
+            </span>
+          </form>
+        </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </div>
   );
 };

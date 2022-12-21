@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { AuthContext } from "../context/authContext";
@@ -13,9 +13,7 @@ const Upadate = () => {
   const params = useParams();
   const { r_id } = params;
   const state = useLocation().state[0];
-
-  // const params = useParams();
-  console.log(state);
+  const [pics, setPics] = useState(JSON.parse(state.img));
 
   const initialValues = {
     c_name: state?.c_name,
@@ -27,6 +25,9 @@ const Upadate = () => {
     id: currentUser.id,
     car_n: state?.car_n,
   };
+
+  // const params = useParams();
+  // console.log(state);
 
   const navigate = useNavigate();
 
@@ -67,6 +68,7 @@ const Upadate = () => {
       imgUrl.map((img) => {
         arr1.push(img.filename);
       });
+      console.log("vinay");
       console.log(arr1);
       let img2;
       arr1.length > 0 ? (img2 = JSON.stringify(arr1)) : (img2 = state.img);
@@ -75,9 +77,11 @@ const Upadate = () => {
         // console.log("aniket");
         await axios.put(
           `http://10.0.1.205:8800/api/cars/upadatecar/${r_id}`,
-          values
+          values,
+          { headers: { authorization: `Bearer ${currentUser.token}` } }
         );
-        toast.success("upadated successfully");
+        // toast.success("upadated successfully");
+
         navigate("/home");
       } catch (error) {
         toast.error(error);
@@ -87,6 +91,21 @@ const Upadate = () => {
     },
   });
 
+  const removeImage = (e) => {
+    console.log(e);
+    // console.log("dsjdhsd", setPics);
+
+    const filteredData = pics?.filter((item) => item !== e);
+    setPics(filteredData);
+    // console.log(oldState);
+    // oldState.filter((item) => item !== e);
+  };
+
+  useEffect(() => {
+    setPics(pics);
+  }, []);
+
+  console.log(pics);
   return (
     <div>
       <div>
@@ -104,7 +123,7 @@ const Upadate = () => {
                   value={values.c_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="company make  name"
+                  placeholder="car make  "
                 />
                 {errors.c_name && touched.c_name ? (
                   <p className="form-error">{errors.c_name}</p>
@@ -166,6 +185,24 @@ const Upadate = () => {
                   placeholder="enter img"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
+
+                {pics?.length > 0
+                  ? Array.from(pics).map((e) => (
+                      <div className="thumb">
+                        <div key={e}>
+                          <img
+                            className="d-block w-100"
+                            src={`../uploads/${e}`}
+                           
+                            alt="car?.p_name"
+                            style={{ width: "100px" }}
+                          />
+                          <button className="imgbtn"  onClick={() => removeImage(e)}> delete</button>
+                        </div>
+                      </div>
+                    ))
+                  : null}
+
                 {errors.img && touched.img ? (
                   <p className="form-error">{errors.img}</p>
                 ) : null}

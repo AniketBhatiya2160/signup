@@ -15,6 +15,10 @@ import Sellcar from "./pages/Sellcar";
 import Allcar from "./pages/Allcar";
 import Upadate from "./pages/Upadate";
 import Cardetails from "./pages/Cardetails";
+import { ToastContainer } from "react-toastify";
+import Details from "./utils/Details";
+import Card from "./utils/Card";
+import CardDetails from "./utils/CardDetails";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -24,12 +28,22 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={!currentUser ? <Login /> : <Navigate replace to="/" />}
+          />
+          <Route
+            path="/"
+            element={!currentUser ? <Card /> : <Navigate replace to="/" />}
           />
           <Route
             path="/registration"
             element={!currentUser ? <Register /> : <Navigate replace to="/" />}
+          />
+          <Route
+            path="/alldetails/:r_id"
+            element={
+              !currentUser ? <CardDetails /> : <Navigate replace to="/" />
+            }
           />
           <Route
             path="/home"
@@ -51,7 +65,23 @@ function App() {
             path="/cardetails/:r_id"
             element={currentUser ? <Cardetails /> : <Navigate replace to="/" />}
           />
+          <Route
+            path="/exdetails/:r_id"
+            element={currentUser ? <Details /> : <Navigate replace to="/" />}
+          />
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </BrowserRouter>
     </div>
   );

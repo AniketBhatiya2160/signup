@@ -14,7 +14,8 @@ const Allcar = () => {
     const fetchdata = async () => {
       try {
         const res = await axios.get(
-          `http://10.0.1.205:8800/api/cars/getcar/${currentUser.id}`
+          `http://10.0.1.205:8800/api/cars/getcar/${currentUser.id}`,
+          { headers: { authorization: `Bearer ${currentUser.token}` } }
         );
         setCars(res.data);
       } catch (err) {
@@ -26,7 +27,9 @@ const Allcar = () => {
 
   const handleDelete = async (r_id) => {
     try {
-      await axios.delete(`http://10.0.1.205:8800/api/cars/deletecar/${r_id}`);
+      await axios.delete(`http://10.0.1.205:8800/api/cars/deletecar/${r_id}`, {
+        headers: { authorization: `Bearer ${currentUser.token}` },
+      });
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -57,11 +60,9 @@ const Allcar = () => {
                 </div>
                 <div className="card-text">Model name: {car.model}</div>
                 <div className="card-text">Miles covered: {car.miles}</div>
-                {/* <div className="card-text">Date of Purchase: {car.date}</div> */}
+               
                 <div className="card-text">Selling price :${car.s_price}</div>
-                {/* <a href="#" className="card-button">
-                  <Link to={`/upadatecar/${car.r_id}`}>Upadate</Link>
-                </a> */}
+               
                 <a
                   onClick={() => handleDelete(car.r_id)}
                   className="card-button"

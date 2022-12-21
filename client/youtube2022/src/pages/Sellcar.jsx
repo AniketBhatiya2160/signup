@@ -79,17 +79,19 @@ const Sellcar = () => {
       console.log(arr1);
       let img2 = JSON.stringify(arr1);
       console.log(img2);
-      values.img = img2;
+      values.img = img2 ;
 
       try {
         console.log("aniket");
-        await axios.post("http://10.0.1.205:8800/api/cars/addcar", values);
+        await axios.post("http://10.0.1.205:8800/api/cars/addcar", values, {
+          headers: { authorization: `Bearer ${currentUser.token}` },
+        });
         navigate("/home");
       } catch (err) {
         toast.error(err.response.data);
       }
 
-      // action.resetForm();
+    
     },
   });
 
@@ -109,7 +111,7 @@ const Sellcar = () => {
                 value={values.c_name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="company make  name"
+                placeholder="car make"
               />
               {errors.c_name && touched.c_name ? (
                 <p className="form-error">{errors.c_name}</p>
@@ -155,8 +157,8 @@ const Sellcar = () => {
                 placeholder="enter miles"
               />
 
-              {errors.s_price && touched.s_price ? (
-                <p className="form-error">{errors.s_price}</p>
+              {errors.miles && touched.miles ? (
+                <p className="form-error">{errors.miles}</p>
               ) : null}
             </div>
             <div className="mb-3">

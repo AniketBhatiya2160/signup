@@ -8,7 +8,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 
 const Header = () => {
-  const { currentUser, logout } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="green" variant="dark">
@@ -17,7 +23,7 @@ const Header = () => {
             {" "}
             <Nav className="me-auto color navbar-dark">
               <Link to="/home" className="nav-link">
-                car-sell
+                Home
               </Link>
             </Nav>
           </Navbar.Brand>
@@ -25,7 +31,7 @@ const Header = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav>
               <Link to="/allcar" className="nav-link">
-                All car
+                Mycar
               </Link>
             </Nav>
             <Nav className="me-auto">

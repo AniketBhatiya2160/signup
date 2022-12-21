@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Oheader from "../components/Oheader";
 
 const initialValues = {
   username: "",
@@ -45,90 +46,81 @@ const Register = () => {
     });
 
   return (
-    <div className="auth">
-      <div className="form">
-        <form onSubmit={handleSubmit}>
-          <h1>Register</h1>
-          <div className="mb-3">
-            <input
-              className="form-control"
-              name="username"
-              type="text"
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Enter Name"
-            />
-            {errors.username && touched.username ? (
-              <p className="form-error">{errors.username}</p>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <input
-              className="form-control"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="email"
-              placeholder="Enter Email"
-            />
-            {errors.email && touched.email ? (
-              <p className="form-error">{errors.email}</p>
-            ) : null}
-          </div>
+    <div>
+      <Oheader />
+      <div className="auth">
+        <div className="form">
+          <form onSubmit={handleSubmit}>
+            <h1>Register</h1>
+            <div className="mb-3">
+              <input
+                className="form-control"
+                name="username"
+                type="text"
+                value={values.username}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Enter Name"
+              />
+              {errors.username && touched.username ? (
+                <p className="form-error">{errors.username}</p>
+              ) : null}
+            </div>
+            <div className="mb-3">
+              <input
+                className="form-control"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type="email"
+                placeholder="Enter Email"
+              />
+              {errors.email && touched.email ? (
+                <p className="form-error">{errors.email}</p>
+              ) : null}
+            </div>
 
-          <div className="mb-3">
-            <input
-              className="form-control"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="password"
-              placeholder="Enter Password"
-            />
-            {errors.password && touched.password ? (
-              <p className="form-error">{errors.password}</p>
-            ) : null}
-          </div>
+            <div className="mb-3">
+              <input
+                className="form-control"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type="password"
+                placeholder="Enter Password"
+              />
+              {errors.password && touched.password ? (
+                <p className="form-error">{errors.password}</p>
+              ) : null}
+            </div>
 
-          <div className="mb-3">
-            <input
-              className="form-control"
-              name="confirm_password"
-              value={values.confirm_password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="password"
-              placeholder="Enter confrim Password"
-            />
-            {errors.confirm_password && touched.password ? (
-              <p className="form-error">{errors.confirm_password}</p>
-            ) : null}
-          </div>
+            <div className="mb-3">
+              <input
+                className="form-control"
+                name="confirm_password"
+                value={values.confirm_password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type="password"
+                placeholder="Enter confrim Password"
+              />
+              {errors.confirm_password && touched.password ? (
+                <p className="form-error">{errors.confirm_password}</p>
+              ) : null}
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            Sign up
-          </button>
-          {/* {err && <p>{err}</p>} */}
-          <span>
-            For login click here <Link to="/">Login</Link>
-          </span>
-        </form>
+            <button type="submit" className="btn btn-primary">
+              Sign up
+            </button>
+            {/* {err && <p>{err}</p>} */}
+            <span>
+              For login click here <Link to="/login">Login</Link>
+            </span>
+          </form>
+        </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </div>
   );
 };

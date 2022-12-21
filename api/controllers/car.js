@@ -1,6 +1,6 @@
 import { db } from "../db.js";
 // import jwt from "jsonwebtoken";
-
+//get user car
 export const getcar = (req, res) => {
   const q = "select*from cars where id=?";
   db.query(q, [req.params.id], (err, data) => {
@@ -8,7 +8,7 @@ export const getcar = (req, res) => {
     return res.status(200).json(data);
   });
 };
-
+//get details page car
 export const getCarsById = (req, res) => {
   const { r_id } = req.params;
 
@@ -27,14 +27,17 @@ export const getCarsById = (req, res) => {
 };
 
 export const addcar = (req, res) => {
+  // const token = req.cookies.access_token;
+  // if (!token) return res.status(401).json("Not authenticated!");
+
   const q = "SELECT * FROM cars WHERE car_n=?";
-  console.log("aniket2");
+  // console.log("aniket2");
   db.query(q, [req.body.car_n], (err, data) => {
-    console.log("aniket1");
+    // console.log("aniket1");
     if (err) return res.status(500).json(err);
     if (data.length)
       return res.status(409).json("car  registration number must be unique!");
-    console.log("aniket");
+    // console.log("aniket");
 
     const q =
       "INSERT INTO `cars` (`c_name`, `model`, `date`, `miles`, `s_price`,`img`,`id`,`car_n`) VALUES (?)";
@@ -49,6 +52,7 @@ export const addcar = (req, res) => {
       req.body.id,
       req.body.car_n,
     ];
+    console.log(values)
 
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
@@ -88,3 +92,42 @@ export const updatecar = (req, res) => {
     return res.json("Product Updated");
   });
 };
+
+//all user cars
+export const allcar = (req, res) => {
+  const q = "select*from cars ";
+  db.query(q, (err, data) => {
+    if (err) return res.send(err);
+    return res.status(200).json(data);
+  });
+};
+
+
+//all user car(except)
+export const exceptuser = (req, res) => {
+  const q = "select*from cars where id !=?";
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.send(err);
+    return res.status(200).json(data);
+  });
+};
+
+
+export const getCarsByUId = (req, res) => {
+  const { r_id } = req.params;
+
+  if (!r_id) res.status(400).send("Id not found");
+
+  const q = `select * from cars where r_id=${r_id}`;
+
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log("error", error);
+      return res.send(err);
+    }
+    console.log(res, "res");
+    return res.status(200).json(data);
+  });
+};
+
+
