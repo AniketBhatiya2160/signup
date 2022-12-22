@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Gototop from "../components/Gototop";
 import Header from "../components/Header";
 
 // import { useEffect } from "react";
@@ -30,12 +31,9 @@ const Home = () => {
     <div>
       <Header />
       <div className="bg">
-        <div
-          className="container cardContainer d-flex"
-          style={{ marginTop: "50px" }}
-        >
+        <div className="container cardContainer " style={{ marginTop: "50px" }}>
           {cars.map((car) => (
-            <div className="row " key={car.r_id}>
+            <div className="col-sm-6 mb-4 " key={car.r_id}>
               <div className="">
                 <div className="card-sl">
                   <div className="card-image">
@@ -57,8 +55,10 @@ const Home = () => {
               </div>
             </div>
           ))}
+           <Gototop />
         </div>
       </div>
+     
     </div>
   );
 };

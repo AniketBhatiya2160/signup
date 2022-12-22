@@ -80,7 +80,7 @@ const Upadate = () => {
           values,
           { headers: { authorization: `Bearer ${currentUser.token}` } }
         );
-        // toast.success("upadated successfully");
+        toast.success("upadated successfully");
 
         navigate("/home");
       } catch (error) {

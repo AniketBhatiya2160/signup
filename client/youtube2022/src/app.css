@@ -13,8 +13,10 @@ code {
 }
 
 .auth {
-  height: calc(100vh - 76px);
-  /* background-image: url("../public/screenimages/pexels-pixabay-35967.jpg"); */
+  height: calc(100vh - 70px);
+  background-image: url("../public/screenimages/pexels-pixabay-35967.jpg");
+  /* height: auto !important; */
+  min-height: 100%;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -51,7 +53,7 @@ code {
 }
 
 .main {
-  background-image: url("../public/screenimages/pexels-pixabay-35967.jpg");
+  /* background-image: url("../public/screenimages/pexels-pixabay-35967.jpg"); */
 
   height: 100vh;
 
@@ -86,15 +88,19 @@ a {
 .card-sl {
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: fit-content;
 }
 
 .card-image {
   /* max-height: auto; */
   /* change 100 to auto */
-  /* width: 150px; */
+  /* width: 150px;
   height: 150px;
   object-fit: cover;
-  border-radius: 8px 8px 0px 0;
+  border-radius: 8px 8px 0px 0; */
+  width: 349px;
+  height: 349px;
+  object-fit: cover;
 }
 .card-image > img {
   object-fit: cover;
@@ -176,16 +182,31 @@ a {
   }
 }
 
+/* home page css */
+.bg {
+  display: flex;
+  /* height: 1000vh; */
+  height: auto !important;
+  min-height: 100%;
+  justify-content: center;
+  background-color: black;
+}
+
 /* image */
 .ABody {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .img-large {
   max-width: 100%;
 }
 .cardContainer {
-  gap: 30px;
+  gap: 50px;
 }
 
 .color {
@@ -201,8 +222,8 @@ a {
 
 .csel {
   background-color: black;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
 }
 .carousel-item {
   width: 500px;
@@ -224,4 +245,16 @@ a {
 .imgbtn {
   font-size: 12px;
   color: #e26d5c;
+}
+
+/* for details page */
+.vee {
+  overflow: hidden;
+}
+
+
+
+.top {
+  color: red;
+  float: right;
 }

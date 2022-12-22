@@ -54,7 +54,7 @@ const Login = () => {
     });
   return (
     <div>
-      <Oheader/>
+      <Oheader />
       <div className="auth">
         <div className="form">
           <form onSubmit={handleSubmit}>

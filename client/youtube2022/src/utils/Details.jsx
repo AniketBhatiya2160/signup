@@ -30,43 +30,40 @@ const Details = () => {
     <div>
       <Header />
       <div className="d-flex flex-column" style={{ marginTop: "50px" }}>
-        <Container>
-          <div className="ABody">
-            {cars?.map((car) => {
-              return (
-                <Row key={car.r_id}>
-                  <Col md={6} key={car.r_id}>
-                    <div className="csel">
-                      <Carousel>
-                        {JSON.parse(car.img).map((e, index) => (
-                          <Carousel.Item>
-                            <img
-                              className="d-block w-100"
-                              src={`../uploads/${e}`}
-                              alt="car?.p_name"
-                            />
-                            )
-                          </Carousel.Item>
-                        ))}
-                      </Carousel>
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <ListGroup variant="flush">
-                      <ListGroup.Item>
-                        <h1>{car?.c_name}</h1>
-                      </ListGroup.Item>
-                      <ListGroup.Item>Price:${car?.s_price}</ListGroup.Item>
-                      <ListGroup.Item>Model Name:{car?.model}</ListGroup.Item>
-                      <ListGroup.Item>Registartion:{car?.car_n}</ListGroup.Item>
-                      <ListGroup.Item>Miles:{car?.miles}</ListGroup.Item>
-                    </ListGroup>
-                  </Col>
-                </Row>
-              );
-            })}
-          </div>
-        </Container>
+        <div className="ABody">
+          {cars?.map((car) => {
+            return (
+              <>
+                <div className="csel">
+                  <Carousel>
+                    {JSON.parse(car.img).map((e, index) => (
+                      <Carousel.Item>
+                        <img
+                          className="d-block w-100"
+                          src={`../uploads/${e}`}
+                          alt="car?.p_name"
+                        />
+                        )
+                      </Carousel.Item>
+                    ))}
+                  </Carousel>
+                </div>
+
+                <div className="ditem2">
+                  <ListGroup variant="flush">
+                    <ListGroup.Item>
+                      <h1>{car?.c_name}</h1>
+                    </ListGroup.Item>
+                    <ListGroup.Item>Price:${car?.s_price}</ListGroup.Item>
+                    <ListGroup.Item>Model Name:{car?.model}</ListGroup.Item>
+                    <ListGroup.Item>Registartion:{car?.car_n}</ListGroup.Item>
+                    <ListGroup.Item>Miles:{car?.miles}</ListGroup.Item>
+                  </ListGroup>
+                </div>
+              </>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

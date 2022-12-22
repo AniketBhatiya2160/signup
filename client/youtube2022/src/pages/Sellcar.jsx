@@ -79,19 +79,18 @@ const Sellcar = () => {
       console.log(arr1);
       let img2 = JSON.stringify(arr1);
       console.log(img2);
-      values.img = img2 ;
+      values.img = img2;
 
       try {
         console.log("aniket");
         await axios.post("http://10.0.1.205:8800/api/cars/addcar", values, {
           headers: { authorization: `Bearer ${currentUser.token}` },
         });
+        toast.success("successfully added car");
         navigate("/home");
       } catch (err) {
         toast.error(err.response.data);
       }
-
-    
     },
   });
 
@@ -203,9 +202,9 @@ const Sellcar = () => {
                 onBlur={handleBlur}
                 placeholder="enter car registration  number"
               />
-              {/* {errors.car_n && touched.car_n ? (
+              {errors.car_n && touched.car_n ? (
                 <p className="form-error">{errors.car_n}</p>
-              ) : null} */}
+              ) : null}
             </div>
             <br></br>
             <button type="submit" className="btn btn-primary">

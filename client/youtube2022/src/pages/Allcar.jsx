@@ -5,6 +5,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { AuthContext } from "../context/authContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Gototop from "../components/Gototop";
+
 
 const Allcar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -31,6 +35,7 @@ const Allcar = () => {
         headers: { authorization: `Bearer ${currentUser.token}` },
       });
       window.location.reload();
+      toast.success("successfully deleted car");
     } catch (error) {
       console.log(error);
     }
@@ -39,12 +44,13 @@ const Allcar = () => {
   return (
     <div>
       <Header />
+      <div className="bg">
       <div
-        className="container cardContainer d-flex"
+        className="container cardContainer "
         style={{ marginTop: "50px" }}
       >
         {cars.map((car) => (
-          <div className="row " key={car.r_id}>
+          <div className="col-sm-6 mb-4 " key={car.r_id}>
             <div className="">
               <div className="card-sl">
                 <div className="card-image">
@@ -60,9 +66,9 @@ const Allcar = () => {
                 </div>
                 <div className="card-text">Model name: {car.model}</div>
                 <div className="card-text">Miles covered: {car.miles}</div>
-               
+
                 <div className="card-text">Selling price :${car.s_price}</div>
-               
+
                 <a
                   onClick={() => handleDelete(car.r_id)}
                   className="card-button"
@@ -71,8 +77,12 @@ const Allcar = () => {
                 </a>
               </div>
             </div>
+           
           </div>
+          
         ))}
+         <Gototop/>
+      </div>
       </div>
     </div>
   );

@@ -5,18 +5,14 @@ import Navbar from "react-bootstrap/Navbar";
 
 import { Link } from "react-router-dom";
 
-
-
 const Oheader = () => {
- 
-
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="green" variant="dark">
+      <Navbar collapseOnSelect expand="lg" >
         <Container>
           <Navbar.Brand>
             {" "}
-            <Nav className="me-auto color navbar-dark">
+            <Nav className="me-auto ">
               <Link to="/home" className="nav-link">
                 Home
               </Link>

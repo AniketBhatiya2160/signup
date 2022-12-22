@@ -26,6 +26,7 @@ export const sellSchema = Yup.object({
       return value != null;
     }
   ),
+  car_n: Yup.string().required("please enter registration number"),
 });
 
 // export const upadateSchema = Yup.object({

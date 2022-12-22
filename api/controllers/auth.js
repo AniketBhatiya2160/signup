@@ -46,7 +46,7 @@ export const login = (req, res) => {
     const token = jwt.sign({ id: data[0].id }, "jwtkey");
     data[0].token = token;
     const { password, ...other } = data[0];
-    console.log(token);
+    // console.log(token);
 
     res
       .cookie("access_token", token, {
