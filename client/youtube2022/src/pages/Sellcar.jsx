@@ -80,7 +80,7 @@ const Sellcar = () => {
       let img2 = JSON.stringify(arr1);
       console.log(img2);
       values.img = img2;
-
+                
       try {
         console.log("aniket");
         await axios.post("http://10.0.1.205:8800/api/cars/addcar", values, {

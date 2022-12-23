@@ -59,7 +59,7 @@ const Login = () => {
         <div className="form">
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <div className="mb-3">
+            <div className="form-group mb-3 ">
               <input
                 className="form-control"
                 name="username"
@@ -73,7 +73,8 @@ const Login = () => {
                 <p className="form-error">{errors.username}</p>
               ) : null}
             </div>
-            <div className="mb-3">
+            <div className="form-group  mb-3 ">
+
               <input
                 className="form-control"
                 onChange={handleChange}
@@ -83,6 +84,8 @@ const Login = () => {
                 type="password"
                 placeholder="Enter Password"
               />
+
+              
               {errors.password && touched.password ? (
                 <p className="form-error">{errors.password}</p>
               ) : null}

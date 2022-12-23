@@ -56,7 +56,7 @@ const Card = () => {
               </div>
             </div>
           ))}
-           <Gototop/>
+          <Gototop />
         </div>
       </div>
     </div>

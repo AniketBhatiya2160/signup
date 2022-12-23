@@ -110,11 +110,11 @@ const Upadate = () => {
     <div>
       <div>
         <Header />
-        <div className="auth">
-          <div className="form">
+        <div className="up">
+          <div className="upf">
             <form onSubmit={handleSubmit}>
               <h1>Upadate car details</h1>
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   id="avee"
@@ -129,7 +129,7 @@ const Upadate = () => {
                   <p className="form-error">{errors.c_name}</p>
                 ) : null}
               </div>
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   name="model"
@@ -143,7 +143,7 @@ const Upadate = () => {
                   <p className="form-error">{errors.model}</p>
                 ) : null}
               </div>
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   name="date"
@@ -158,7 +158,7 @@ const Upadate = () => {
                   <p className="form-error">{errors.date}</p>
                 ) : null}
               </div>
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   name="miles"
@@ -173,7 +173,7 @@ const Upadate = () => {
                   <p className="form-error">{errors.s_price}</p>
                 ) : null}
               </div>
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   name="img"
@@ -185,29 +185,34 @@ const Upadate = () => {
                   placeholder="enter img"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
-
-                {pics?.length > 0
-                  ? Array.from(pics).map((e) => (
-                      <div className="thumb">
-                        <div key={e}>
-                          <img
-                            className="d-block w-100"
-                            src={`../uploads/${e}`}
-                           
-                            alt="car?.p_name"
-                            style={{ width: "100px" }}
-                          />
-                          <button className="imgbtn"  onClick={() => removeImage(e)}> delete</button>
-                        </div>
-                      </div>
-                    ))
-                  : null}
-
+                <div className="updateImg">
+                  {pics?.length > 0
+                    ? Array.from(pics).map((e) => (
+                        <span className="thumb">
+                          <span className="ithumb" key={e}>
+                            <img
+                              className="d-block w-100"
+                              src={`../uploads/${e}`}
+                              alt="car?.p_name"
+                              style={{ width: "100px" }}
+                            />
+                            <button
+                              className="imgbtn"
+                              onClick={() => removeImage(e)}
+                            >
+                              {" "}
+                              delete
+                            </button>
+                          </span>
+                        </span>
+                      ))
+                    : null}
+                </div>
                 {errors.img && touched.img ? (
                   <p className="form-error">{errors.img}</p>
                 ) : null}
               </div>
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   name="s_price"
@@ -223,7 +228,7 @@ const Upadate = () => {
                 ) : null}
               </div>
 
-              <div className="mb-3">
+              <div className="form-group mb-3">
                 <input
                   className="form-control"
                   name="car_n"
