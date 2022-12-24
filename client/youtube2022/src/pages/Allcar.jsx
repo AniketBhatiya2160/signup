@@ -44,45 +44,41 @@ const Allcar = () => {
   return (
     <div>
       <Header />
-      <div className="bg">
-      <div
-        className="container cardContainer "
-        style={{ marginTop: "50px" }}
-      >
-        {cars.map((car) => (
-          <div className="col-sm-6 mb-4 " key={car.r_id}>
-            <div className="">
-              <div className="card-sl">
-                <div className="card-image">
+      <div >
+      <div className="container col-12 ">
+          <div className="row justify-content-center">
+            {cars.map((car) => (
+              <div className="col-3 m-3 " key={car.r_id}>
+                <div className="card">
                   <img
+                    className="card-img-top "
                     src={`../uploads/${JSON.parse(car.img)[0]}`}
-                    width={"100%"}
-                    height={"100%"}
+                    alt="Card image cap"
                   />
-                </div>
-
-                <div className="card-heading">
-                  <Link to={`/cardetails/${car.r_id}`}>{car.c_name}</Link>
-                </div>
-                <div className="card-text">Model name: {car.model}</div>
-                <div className="card-text">Miles covered: {car.miles}</div>
-
-                <div className="card-text">Selling price :${car.s_price}</div>
-
-                <a
+                  <div className="card-body">
+                    <h5 className="card-title">
+                      <Link to={`/exdetails/${car.r_id}`}>{car.c_name}</Link>
+                    </h5>
+                    {/* {/ <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> /} */}
+                  </div>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Model Name: {car.miles}</li>
+                    <li className="list-group-item">
+                      Selling price: {car.s_price}
+                    </li>
+                  </ul>
+                  <a
                   onClick={() => handleDelete(car.r_id)}
                   className="card-button"
                 >
                   Delete
                 </a>
+                </div>
               </div>
-            </div>
-           
+            ))}
           </div>
-          
-        ))}
-         <Gototop/>
-      </div>
+          <Gototop />
+        </div>
       </div>
     </div>
   );

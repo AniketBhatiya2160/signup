@@ -310,3 +310,11 @@ a {
 .imgbtn {
   display: inline;
 }
+
+
+/* home page image  */
+.card-img-top {
+  width: 100%;
+  height: 28vh;
+  object-fit: cover;
+  }

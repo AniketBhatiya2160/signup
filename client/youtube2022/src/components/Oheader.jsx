@@ -8,7 +8,12 @@ import { Link } from "react-router-dom";
 const Oheader = () => {
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" >
+      <Navbar
+        className="navbar navbar-dark bg-dark"
+        collapseOnSelect
+        expand="lg"
+        bg="black"
+      >
         <Container>
           <Navbar.Brand>
             {" "}
